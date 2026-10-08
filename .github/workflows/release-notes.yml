@@ -1,0 +1,30 @@
+name: Sync release notes
+
+# Keeps every GitHub release's description in step with CHANGELOG.md.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['CHANGELOG.md', 'scripts/release-notes.py', '.github/workflows/release-notes.yml']
+
+permissions:
+  contents: write
+
+jobs:
+  notes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update each release that exists
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for v in $(python3 scripts/release-notes.py --versions); do
+            if gh release view "v$v" >/dev/null 2>&1; then
+              python3 scripts/release-notes.py "$v" > notes.md
+              gh release edit "v$v" --title "Keygrid $v" --notes-file notes.md
+              echo "Updated v$v"
+            else
+              echo "No release for v$v yet, skipping"
+            fi
+          done
