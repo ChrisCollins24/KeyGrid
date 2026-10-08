@@ -4,7 +4,7 @@
 
 <h1 align="center">Keygrid</h1>
 
-<p align="center">Precision BPM &amp; key analyzer for studio engineers</p>
+<p align="center">Key, BPM, reverb and delay times, all in one drag and drop.<br>Keygrid gives bedroom artists and engineers their time back, so they can focus on the music.</p>
 
 <p align="center"><a href="https://github.com/ChrisCollins24/KeyGrid/releases/latest"><b>⬇ Download Keygrid for Mac</b></a></p>
 
@@ -12,15 +12,37 @@
 
 ---
 
-Keygrid is a precision BPM and key analyzer for studio engineers. This folder turns it into a real Mac app (`Keygrid.app`) that runs on both Apple Silicon (M1–M4) and Intel Macs.
+## Why Keygrid
 
-You build it **once**, then copy the installer (`Keygrid_1.0.0_universal.dmg`) to any Mac (a friend's laptop, the studio Mac) and install it there. The other Macs don't need any of the tools below.
+Every artist starts somewhere, and for most of us that's a bedroom setup with little or no budget. Before a single vocal is recorded, there's a checklist: find the BPM, identify the key, work out reverb and delay times that fit the tempo. That usually means bouncing between several websites and apps, each answering one question. It takes time, it breaks focus, and it pulls energy away from what matters most: the music, the artist, and the moment in the session.
+
+Keygrid brings all of it into one place. Drag in a beat, and in seconds you have the tempo to four decimal places, the key and its relative key, vocal reverb and delay settings timed to the track, and a health check on the beat itself. No tabs, no guesswork, no outsourcing.
+
+Keygrid is built for the engineers and artists who are just getting started, and the ones who've been at it for years. It gives you back the time and energy to spend on the work you love.
+
+## What you get
+
+- **Tempo** to four decimal places, with ½× / 2× and a click track to check it by ear
+- **Key and relative key**, with Open Key codes and a playable piano showing the scale
+- **Vocal reverb** settings for ValhallaVintageVerb, timed to the BPM
+- **Vocal delay** times for every common note value
+- **Beat health:** peak, clipping, loudness (LUFS), dynamics and mono compatibility
+- **Previous:** a saved list of every song you've analyzed, ready for invoices
+- Runs on Apple Silicon and Intel Macs. Your audio never leaves your computer.
+
+---
+
+## Building Keygrid yourself
+
+You don't need this section to use Keygrid. Just use the download link above. These steps are for building the app from this source code, which runs on both Apple Silicon (M1–M4) and Intel Macs.
+
+You build it **once**, then copy the installer to any Mac and install it there. The other Macs don't need any of the tools below.
 
 There are two ways to build it. Pick one.
 
 ---
 
-## Option A: Build it on your Mac (about 15 minutes the first time)
+### Option A: Build it on your Mac (about 15 minutes the first time)
 
 Open **Terminal** (Applications → Utilities → Terminal) and run these one at a time.
 
@@ -62,7 +84,7 @@ src-tauri/target/universal-apple-darwin/release/bundle/dmg/Keygrid_1.0.0_univers
 
 ---
 
-## Option B: Let GitHub build it (no tools on your Mac)
+### Option B: Let GitHub build it (no tools on your Mac)
 
 1. Make a free account at https://github.com and create a new **private** repository called `keygrid`.
 2. On the repository page, click **uploading an existing file** and drag in everything in this folder, including the hidden `.github` folder. (On a Mac, press **Cmd + Shift + .** in Finder to show hidden files.)
