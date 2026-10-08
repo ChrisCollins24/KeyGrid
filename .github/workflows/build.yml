@@ -1,49 +1,69 @@
-name: Build Keygrid for Mac
+name: Build Keygrid
 
 on:
   workflow_dispatch:      # run it any time from the Actions tab
   push:
-    branches: [main]      # every update to the app builds a fresh download
+    branches: [main]      # every update to the app builds fresh downloads
     paths-ignore: ['README.md', 'docs/**', 'CHANGELOG.md', 'scripts/release-notes.py', '.github/workflows/release-notes.yml', '.github/workflows/wiki.yml', '.github/ISSUE_TEMPLATE/**', '.github/pull_request_template.md', '*.md']
 
 permissions:
-  contents: write         # lets the build attach the installer to a Release
+  contents: write         # lets the release job attach the installers
 
 jobs:
   mac:
+    name: Mac (Apple Silicon + Intel)
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-
       - uses: dtolnay/rust-toolchain@stable
         with:
           targets: aarch64-apple-darwin,x86_64-apple-darwin
-
-      - name: Install
-        run: npm ci
-
-      - name: Build universal app (Apple Silicon + Intel)
-        run: npm run build
-
-      - name: Keep a copy on the run page
-        uses: actions/upload-artifact@v4
+      - run: npm ci
+      - name: Build universal app
+        run: npm run build:mac
+      - uses: actions/upload-artifact@v4
         with:
           name: Keygrid-mac
           path: src-tauri/target/universal-apple-darwin/release/bundle/dmg/*.dmg
           if-no-files-found: error
 
+  windows:
+    name: Windows (64-bit)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: dtolnay/rust-toolchain@stable
+      - run: npm ci
+      - name: Build Windows installer
+        run: npm run build:windows
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Keygrid-windows
+          path: src-tauri/target/release/bundle/nsis/*.exe
+          if-no-files-found: error
+
+  release:
+    name: Publish downloads
+    needs: [mac, windows]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
       - name: Read version
         id: ver
         run: echo "v=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
-
       - name: Write release notes from CHANGELOG.md
         run: python3 scripts/release-notes.py "${{ steps.ver.outputs.v }}" > release-notes.md
-
-      - name: Publish the download
+      - name: Publish
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v${{ steps.ver.outputs.v }}
@@ -51,5 +71,5 @@ jobs:
           name: Keygrid ${{ steps.ver.outputs.v }}
           make_latest: true
           overwrite_files: true
-          files: src-tauri/target/universal-apple-darwin/release/bundle/dmg/*.dmg
+          files: dist/*
           body_path: release-notes.md

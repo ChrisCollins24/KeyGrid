@@ -2,6 +2,12 @@
 
 All notable changes to Keygrid. Newest first.
 
+## 1.1.0 (2026-10-08)
+
+### Added
+- **Keygrid for Windows.** A Windows installer (64-bit, Windows 10 and 11) is now available next to the Mac download, with every feature from the Mac app, including Keep on top.
+- A feedback email address in the app, under How it works.
+
 ## 1.0.3 (2026-10-08)
 
 ### Changed

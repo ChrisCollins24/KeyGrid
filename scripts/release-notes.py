@@ -32,10 +32,17 @@ print(f"""## What's new in {version}
 ---
 
 ### Install
+
+**Mac** (Apple Silicon and Intel, macOS 11 or newer)
 1. Download **Keygrid_{version}_universal.dmg** below and open it.
 2. Drag **Keygrid** into **Applications**.
 3. First time only: open Keygrid once, then go to **System Settings → Privacy & Security** and click **Open Anyway**.
 
-Works on Apple Silicon and Intel Macs running macOS 11 or newer. Your history in **Previous** carries over when you update.
+**Windows** (Windows 10 or 11, 64-bit)
+1. Download **Keygrid_{version}_x64-setup.exe** below and open it.
+2. If Windows shows "Windows protected your PC", click **More info**, then **Run anyway**.
+3. Follow the installer. Keygrid appears in your Start menu.
+
+Your history in **Previous** carries over when you update.
 
 [All changes](https://github.com/ChrisCollins24/Keygrid/blob/main/CHANGELOG.md)""")

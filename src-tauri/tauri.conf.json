@@ -1,7 +1,7 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
   "productName": "Keygrid",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "identifier": "com.keygrid.analyzer",
   "build": {
     "frontendDist": "../src"
@@ -26,10 +26,7 @@
   },
   "bundle": {
     "active": true,
-    "targets": [
-      "app",
-      "dmg"
-    ],
+    "targets": "all",
     "category": "Music",
     "shortDescription": "Precision BPM and key analyzer",
     "copyright": "Copyright © 2026 Christian Collins. All rights reserved.",
@@ -63,6 +60,17 @@
     "resources": {
       "../LICENSE": "LICENSE.txt",
       "../THIRD-PARTY-NOTICES.md": "THIRD-PARTY-NOTICES.md"
+    },
+    "windows": {
+      "nsis": {
+        "installMode": "currentUser",
+        "installerIcon": "icons/icon.ico",
+        "displayLanguageSelector": false
+      },
+      "webviewInstallMode": {
+        "type": "downloadBootstrapper",
+        "silent": true
+      }
     }
   }
 }

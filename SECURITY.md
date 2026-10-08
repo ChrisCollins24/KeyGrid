@@ -8,7 +8,7 @@ Only the [latest release](https://github.com/ChrisCollins24/Keygrid/releases/lat
 
 - Audio files are analyzed entirely on your Mac and are never uploaded.
 - Keygrid doesn't collect analytics or send data anywhere.
-- Your song history is stored locally in `~/Library/Application Support/com.keygrid.analyzer/history.json`.
+- Your song history is stored locally: on Mac in `~/Library/Application Support/com.keygrid.analyzer/history.json`, on Windows in `%APPDATA%\com.keygrid.analyzer\history.json`.
 - The only time Keygrid opens a web address is when you click a link in the app, which opens in your default browser.
 
 ## Reporting a vulnerability
@@ -17,7 +17,7 @@ Please **don't** open a public issue for security problems.
 
 Report them privately using GitHub's [private vulnerability reporting](https://github.com/ChrisCollins24/Keygrid/security/advisories/new), or email **keygridapp@gmail.com**. Include:
 
-- the Keygrid version and macOS version,
+- the Keygrid version, and your macOS or Windows version,
 - what the problem is and how to reproduce it,
 - what impact you think it has.
 

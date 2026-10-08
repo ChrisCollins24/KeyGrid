@@ -1,13 +1,15 @@
 {
   "name": "keygrid",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "private": true,
   "description": "Keygrid: precision BPM and key analyzer for studio engineers",
   "scripts": {
     "page": "node scripts/build-page.js",
     "dev": "node scripts/build-page.js && tauri dev",
-    "build": "node scripts/build-page.js && tauri build --target universal-apple-darwin",
-    "build:this-mac": "node scripts/build-page.js && tauri build"
+    "build:mac": "node scripts/build-page.js && tauri build --target universal-apple-darwin --bundles app,dmg",
+    "build:windows": "node scripts/build-page.js && tauri build --bundles nsis",
+    "build": "node scripts/build-page.js && tauri build --target universal-apple-darwin --bundles app,dmg",
+    "build:this-computer": "node scripts/build-page.js && tauri build"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2"
