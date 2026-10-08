@@ -21,6 +21,6 @@ Keygrid is built for engineers and artists at every level, from first bedroom se
 
 The maintainer may edit or remove comments, lock conversations, or block people who don't follow this code of conduct.
 
-To report a problem, contact the maintainer privately through the contact details on [@ChrisCollins24's GitHub profile](https://github.com/ChrisCollins24). Reports are kept confidential.
+To report a problem, email **keygridapp@gmail.com**. Reports are kept confidential.
 
 This code of conduct applies to all Keygrid project spaces, including this repository's issues and discussions.

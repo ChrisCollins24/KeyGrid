@@ -15,7 +15,7 @@ Only the [latest release](https://github.com/ChrisCollins24/KeyGrid/releases/lat
 
 Please **don't** open a public issue for security problems.
 
-Report them privately using GitHub's [private vulnerability reporting](https://github.com/ChrisCollins24/KeyGrid/security/advisories/new). Include:
+Report them privately using GitHub's [private vulnerability reporting](https://github.com/ChrisCollins24/KeyGrid/security/advisories/new), or email **keygridapp@gmail.com**. Include:
 
 - the Keygrid version and macOS version,
 - what the problem is and how to reproduce it,
