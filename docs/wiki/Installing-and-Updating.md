@@ -43,26 +43,6 @@ Your **Previous** song history is kept when you update. You may need to do the *
 
 See what changed in each version in the [changelog](https://github.com/ChrisCollins24/Keygrid/blob/main/CHANGELOG.md).
 
-## Move your history to another computer
-
-Your song history is saved in one file.
-
-On Mac:
-
-```
-~/Library/Application Support/com.keygrid.analyzer/history.json
-```
-
-To open that folder, in Finder choose **Go → Go to Folder…**, paste the path above without `history.json`, and press Return. On Windows:
-
-```
-%APPDATA%\com.keygrid.analyzer\history.json
-```
-
-To open that folder, press **Windows + R**, paste `%APPDATA%\com.keygrid.analyzer` and press Enter.
-
-Copy `history.json` into the same folder on the other computer (open Keygrid there once first so the folder exists), then reopen Keygrid. It works between Mac and Windows too.
-
 # Windows
 
 ## Install on Windows
@@ -82,6 +62,26 @@ Download and run the new **setup.exe**. It replaces the old version and keeps yo
 ## Uninstall on Windows
 
 Open **Settings → Apps → Installed apps**, find **Keygrid**, and choose **Uninstall**. To also delete your song history, delete the `%APPDATA%\com.keygrid.analyzer` folder.
+
+# Move your history to another computer
+
+Your song history is saved in one file.
+
+On Mac:
+
+```
+~/Library/Application Support/com.keygrid.analyzer/history.json
+```
+
+To open that folder, in Finder choose **Go → Go to Folder…**, paste the path above without `history.json`, and press Return. On Windows:
+
+```
+%APPDATA%\com.keygrid.analyzer\history.json
+```
+
+To open that folder, press **Windows + R**, paste `%APPDATA%\com.keygrid.analyzer` and press Enter.
+
+Copy `history.json` into the same folder on the other computer (open Keygrid there once first so the folder exists), then reopen Keygrid. It works between Mac and Windows too.
 
 # Uninstalling
 

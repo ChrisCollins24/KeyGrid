@@ -40,7 +40,7 @@ See [[FAQ#why-does-my-174-bpm-beat-say-87]].
 
 ### My Previous list is empty after updating
 
-Your history is stored separately from the app, so updating shouldn't remove it. Make sure you replaced Keygrid in Applications instead of running it from the .dmg window. If your history is still missing, see [[Installing and Updating#move-your-history-to-another-mac]] for where the file lives.
+Your history is stored separately from the app, so updating shouldn't remove it. On Mac, make sure you replaced Keygrid in Applications instead of running it from the .dmg window. If your history is still missing, see [[Installing and Updating#move-your-history-to-another-computer]] for where the file lives.
 
 ### Keep on top doesn't stay on top of full-screen apps
 
