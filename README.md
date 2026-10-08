@@ -6,7 +6,7 @@
 
 <p align="center">Key, BPM, reverb and delay times, all in one drag and drop.<br>Keygrid gives bedroom artists and engineers their time back, so they can focus on the music.</p>
 
-<p align="center"><a href="https://github.com/ChrisCollins24/KeyGrid/releases/latest"><b>⬇ Download Keygrid for Mac</b></a></p>
+<p align="center"><a href="https://github.com/ChrisCollins24/Keygrid/releases/latest"><b>⬇ Download Keygrid for Mac</b></a> · <a href="https://keygrid.com">keygrid.com</a></p>
 
 <p align="center">Open the .dmg, drag Keygrid into Applications, and the first time click <b>Open Anyway</b> in System Settings → Privacy &amp; Security.</p>
 
@@ -166,15 +166,15 @@ To share Keygrid without the "Open Anyway" step, or to sell it, you'll need an A
 
 ## Help
 
-Install steps, a guide to every part of the app, an FAQ and troubleshooting are in the [Keygrid wiki](https://github.com/ChrisCollins24/KeyGrid/wiki).
+Install steps, a guide to every part of the app, an FAQ and troubleshooting are in the [Keygrid wiki](https://github.com/ChrisCollins24/Keygrid/wiki).
 
 ## What's new
 
-See [CHANGELOG.md](CHANGELOG.md) for every version's changes. Each download on the [Releases page](https://github.com/ChrisCollins24/KeyGrid/releases) lists what changed in that version.
+See [CHANGELOG.md](CHANGELOG.md) for every version's changes. Each download on the [Releases page](https://github.com/ChrisCollins24/Keygrid/releases) lists what changed in that version.
 
 ## Contact
 
-Questions, feedback or press: **keygridapp@gmail.com**. Feature ideas are welcome in [Discussions](https://github.com/ChrisCollins24/KeyGrid/discussions), and bugs in [Issues](https://github.com/ChrisCollins24/KeyGrid/issues/new/choose).
+Questions, feedback or press: **keygridapp@gmail.com**. Feature ideas are welcome in [Discussions](https://github.com/ChrisCollins24/Keygrid/discussions), and bugs in [Issues](https://github.com/ChrisCollins24/Keygrid/issues/new/choose).
 
 ## Credits
 

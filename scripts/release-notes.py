@@ -38,4 +38,4 @@ print(f"""## What's new in {version}
 
 Works on Apple Silicon and Intel Macs running macOS 11 or newer. Your history in **Previous** carries over when you update.
 
-[All changes](https://github.com/ChrisCollins24/KeyGrid/blob/main/CHANGELOG.md)""")
+[All changes](https://github.com/ChrisCollins24/Keygrid/blob/main/CHANGELOG.md)""")

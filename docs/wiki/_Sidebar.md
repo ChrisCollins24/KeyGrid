@@ -1,4 +1,4 @@
-**[Keygrid](https://github.com/ChrisCollins24/KeyGrid)**
+**[Keygrid](https://github.com/ChrisCollins24/Keygrid)**
 
 - [[Home]]
 - [[Installing and Updating]]
@@ -12,4 +12,4 @@
 - [[FAQ]]
 - [[Troubleshooting]]
 
-**[⬇ Download](https://github.com/ChrisCollins24/KeyGrid/releases/latest)**
+**[⬇ Download](https://github.com/ChrisCollins24/Keygrid/releases/latest)**

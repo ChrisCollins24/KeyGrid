@@ -1,12 +1,12 @@
-<p align="center"><img src="https://github.com/ChrisCollins24/KeyGrid/raw/main/docs/brand/keygrid-app-icon.png" width="96" alt="Keygrid icon"></p>
+<p align="center"><img src="https://github.com/ChrisCollins24/Keygrid/raw/main/docs/brand/keygrid-app-icon.png" width="96" alt="Keygrid icon"></p>
 
 # Keygrid help
 
 Keygrid gives you the BPM, key, vocal reverb and delay times, and a health check for any beat, all from one drag and drop. Your audio never leaves your computer.
 
-**[⬇ Download the latest version](https://github.com/ChrisCollins24/KeyGrid/releases/latest)** · Mac, Apple Silicon and Intel, macOS 11 or newer
+**[⬇ Download the latest version](https://github.com/ChrisCollins24/Keygrid/releases/latest)** · [keygrid.com](https://keygrid.com) · Mac, Apple Silicon and Intel, macOS 11 or newer
 
-<img src="https://github.com/ChrisCollins24/KeyGrid/raw/main/docs/screenshots/notes.png" alt="Keygrid showing a beat at 142.0004 BPM in F minor">
+<img src="https://github.com/ChrisCollins24/Keygrid/raw/main/docs/screenshots/notes.png" alt="Keygrid showing a beat at 142.0004 BPM in F minor">
 
 ## Start here
 
@@ -26,7 +26,7 @@ Keygrid gives you the BPM, key, vocal reverb and delay times, and a health check
 
 ## Get in touch
 
-- Questions: [Discussions → Q&A](https://github.com/ChrisCollins24/KeyGrid/discussions/categories/q-a)
-- Ideas: [Discussions → Ideas](https://github.com/ChrisCollins24/KeyGrid/discussions/categories/ideas)
-- Bugs: [Open an issue](https://github.com/ChrisCollins24/KeyGrid/issues/new/choose)
+- Questions: [Discussions → Q&A](https://github.com/ChrisCollins24/Keygrid/discussions/categories/q-a)
+- Ideas: [Discussions → Ideas](https://github.com/ChrisCollins24/Keygrid/discussions/categories/ideas)
+- Bugs: [Open an issue](https://github.com/ChrisCollins24/Keygrid/issues/new/choose)
 - Email: **keygridapp@gmail.com**

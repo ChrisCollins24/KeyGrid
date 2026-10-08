@@ -8,7 +8,7 @@ assignees: ''
 
 <!--
 Questions are usually answered faster in Discussions:
-https://github.com/ChrisCollins24/KeyGrid/discussions/categories/q-a
+https://github.com/ChrisCollins24/Keygrid/discussions/categories/q-a
 
 Bugs and feature ideas have their own forms on the previous page.
 -->

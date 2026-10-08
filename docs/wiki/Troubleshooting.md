@@ -40,4 +40,4 @@ macOS doesn't allow windows to float over apps in full-screen mode. Use Pro Tool
 
 ### Something else isn't working
 
-[Open a bug report](https://github.com/ChrisCollins24/KeyGrid/issues/new?template=bug_report.yml) with your Keygrid version, macOS version and what happened, or email **keygridapp@gmail.com**.
+[Open a bug report](https://github.com/ChrisCollins24/Keygrid/issues/new?template=bug_report.yml) with your Keygrid version, macOS version and what happened, or email **keygridapp@gmail.com**.

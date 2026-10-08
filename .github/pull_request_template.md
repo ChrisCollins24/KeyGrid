@@ -4,7 +4,7 @@ Thanks for your interest in improving Keygrid.
 Keygrid is proprietary software (see LICENSE), so pull requests are only accepted
 after the change has been discussed and agreed with the maintainer first.
 If you haven't already, please start a discussion before opening a pull request:
-https://github.com/ChrisCollins24/KeyGrid/discussions
+https://github.com/ChrisCollins24/Keygrid/discussions
 -->
 
 ## What does this change?

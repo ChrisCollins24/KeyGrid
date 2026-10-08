@@ -13,7 +13,7 @@ Before you load anything, every reading shows **—**.
 
 ## Tempo
 
-<img src="https://github.com/ChrisCollins24/KeyGrid/raw/main/docs/screenshots/notes.png" width="640" alt="Tempo, key and relative key at the top of the Keygrid window">
+<img src="https://github.com/ChrisCollins24/Keygrid/raw/main/docs/screenshots/notes.png" width="640" alt="Tempo, key and relative key at the top of the Keygrid window">
 
 The large number is the BPM to four decimal places. Keygrid finds every beat in the track and fits a straight line through all of them, so small timing errors on single beats average out.
 
@@ -40,7 +40,7 @@ The **Relative key** tile shows the key that uses the same notes with a differen
 
 ## Notes tab
 
-<img src="https://github.com/ChrisCollins24/KeyGrid/raw/main/docs/screenshots/notes.png" width="640" alt="Notes tab with the piano lit up in F minor">
+<img src="https://github.com/ChrisCollins24/Keygrid/raw/main/docs/screenshots/notes.png" width="640" alt="Notes tab with the piano lit up in F minor">
 
 - **Scale notes:** the notes in the key, ready to enter into Auto-Tune or Melodyne.
 - **Piano:** notes in the key are light purple and the root note is solid purple. Tap any key to hear it. The piano is tuned to match the track.
@@ -51,7 +51,7 @@ The **Relative key** tile shows the key that uses the same notes with a differen
 
 ## Reverb tab
 
-<img src="https://github.com/ChrisCollins24/KeyGrid/raw/main/docs/screenshots/reverb.png" width="640" alt="Vocal reverb settings timed to the beat">
+<img src="https://github.com/ChrisCollins24/Keygrid/raw/main/docs/screenshots/reverb.png" width="640" alt="Vocal reverb settings timed to the beat">
 
 Vocal reverb settings for **ValhallaVintageVerb**, with PreDelay and Decay timed to the BPM so the reverb fades out with the beat.
 
@@ -69,7 +69,7 @@ Vocal reverb settings for **ValhallaVintageVerb**, with PreDelay and Decay timed
 
 ## Delay tab
 
-<img src="https://github.com/ChrisCollins24/KeyGrid/raw/main/docs/screenshots/delay.png" width="640" alt="Vocal delay times for every note value">
+<img src="https://github.com/ChrisCollins24/Keygrid/raw/main/docs/screenshots/delay.png" width="640" alt="Vocal delay times for every note value">
 
 Delay times in milliseconds for any delay plugin, for 1/2 to 1/32 notes in straight, dotted and triplet timing. The most common vocal delays are marked with a purple dot: **1/4**, **dotted 1/8** and **1/4 triplet**.
 
@@ -77,7 +77,7 @@ A good starting point: Feedback 25%, Mix 15%, High Cut 6 kHz, Low Cut 300 Hz.
 
 ## Health tab
 
-<img src="https://github.com/ChrisCollins24/KeyGrid/raw/main/docs/screenshots/health.png" width="640" alt="Beat health readings">
+<img src="https://github.com/ChrisCollins24/Keygrid/raw/main/docs/screenshots/health.png" width="640" alt="Beat health readings">
 
 A quick check of the beat before you record on it. The dot on the tab is green when everything looks fine and amber when something needs a look.
 
@@ -97,7 +97,7 @@ See the [[FAQ]] for what to do about each warning.
 
 ## Previous
 
-<img src="https://github.com/ChrisCollins24/KeyGrid/raw/main/docs/screenshots/previous.png" width="640" alt="Previous songs list">
+<img src="https://github.com/ChrisCollins24/Keygrid/raw/main/docs/screenshots/previous.png" width="640" alt="Previous songs list">
 
 Click **Previous** to see every song you've analyzed with its tempo, key and date.
 

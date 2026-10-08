@@ -4,7 +4,7 @@ Keygrid runs on Mac computers with Apple Silicon (M1, M2, M3, M4) or Intel proce
 
 ## Install
 
-1. Go to the [latest release](https://github.com/ChrisCollins24/KeyGrid/releases/latest) and click the **.dmg** file under **Assets** to download it.
+1. Go to the [latest release](https://github.com/ChrisCollins24/Keygrid/releases/latest) and click the **.dmg** file under **Assets** to download it.
 2. Open the downloaded .dmg. A window shows Keygrid and your Applications folder.
 3. Drag **Keygrid** onto **Applications**.
 4. Open Keygrid from Applications or Launchpad.
@@ -29,13 +29,13 @@ If macOS says Keygrid "is damaged and can't be opened", see [[Troubleshooting]].
 
 ## Update to a new version
 
-1. Download the new .dmg from the [latest release](https://github.com/ChrisCollins24/KeyGrid/releases/latest).
+1. Download the new .dmg from the [latest release](https://github.com/ChrisCollins24/Keygrid/releases/latest).
 2. Quit Keygrid if it's open.
 3. Drag the new Keygrid onto Applications and choose **Replace**.
 
 Your **Previous** song history is kept when you update. You may need to do the **Open Anyway** step again for the new version.
 
-See what changed in each version in the [changelog](https://github.com/ChrisCollins24/KeyGrid/blob/main/CHANGELOG.md).
+See what changed in each version in the [changelog](https://github.com/ChrisCollins24/Keygrid/blob/main/CHANGELOG.md).
 
 ## Move your history to another Mac
 

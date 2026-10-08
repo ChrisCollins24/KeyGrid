@@ -14,7 +14,7 @@ A minor and C major use exactly the same notes. They're relative keys, and they'
 
 ### What if the key looks completely wrong?
 
-Check the match rating on the Key tile. **Ambiguous** means the beat doesn't point clearly to one key, which is common with sparse beats, heavy 808s or songs that change key. Play the chord or scale on the **Notes** tab over the beat to check by ear, and look at **Next closest** for other likely keys. If a key is clearly wrong, please [report it](https://github.com/ChrisCollins24/KeyGrid/issues/new?template=bug_report.yml).
+Check the match rating on the Key tile. **Ambiguous** means the beat doesn't point clearly to one key, which is common with sparse beats, heavy 808s or songs that change key. Play the chord or scale on the **Notes** tab over the beat to check by ear, and look at **Next closest** for other likely keys. If a key is clearly wrong, please [report it](https://github.com/ChrisCollins24/Keygrid/issues/new?template=bug_report.yml).
 
 ### What do the Open Key codes mean?
 
@@ -50,4 +50,4 @@ Yes.
 
 ### How do I suggest a feature?
 
-Post it in [Discussions → Ideas](https://github.com/ChrisCollins24/KeyGrid/discussions/categories/ideas) or email **keygridapp@gmail.com**.
+Post it in [Discussions → Ideas](https://github.com/ChrisCollins24/Keygrid/discussions/categories/ideas) or email **keygridapp@gmail.com**.
