@@ -1,0 +1,63 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Keygrid",
+  "version": "1.0.0",
+  "identifier": "com.keygrid.analyzer",
+  "build": {
+    "frontendDist": "../src"
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [
+      {
+        "label": "main",
+        "title": "Keygrid",
+        "width": 780,
+        "height": 840,
+        "minWidth": 420,
+        "minHeight": 560,
+        "resizable": true,
+        "dragDropEnabled": false
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": [
+      "app",
+      "dmg"
+    ],
+    "category": "Music",
+    "shortDescription": "Precision BPM and key analyzer",
+    "copyright": "",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "macOS": {
+      "minimumSystemVersion": "11.0",
+      "signingIdentity": "-",
+      "dmg": {
+        "background": "./dmg-background.png",
+        "windowSize": {
+          "width": 660,
+          "height": 400
+        },
+        "appPosition": {
+          "x": 170,
+          "y": 185
+        },
+        "applicationFolderPosition": {
+          "x": 490,
+          "y": 185
+        }
+      }
+    }
+  }
+}
