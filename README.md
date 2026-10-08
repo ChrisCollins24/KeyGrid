@@ -30,6 +30,21 @@ Keygrid is built for the engineers and artists who are just getting started, and
 - **Previous:** a saved list of every song you've analyzed, ready for invoices
 - Runs on Apple Silicon and Intel Macs. Your audio never leaves your computer.
 
+## Screenshots
+
+<p align="center"><img src="docs/screenshots/notes.png" width="720" alt="Keygrid showing 142.0004 BPM, F minor and its relative key A♭ major, with the F minor scale lit up on the piano"></p>
+
+<table>
+  <tr>
+    <td width="50%"><img src="docs/screenshots/reverb.png" alt="Vocal reverb settings for ValhallaVintageVerb timed to 142 BPM"><p align="center"><b>Vocal reverb</b> timed to the beat</p></td>
+    <td width="50%"><img src="docs/screenshots/delay.png" alt="Vocal delay times in milliseconds for every note value"><p align="center"><b>Vocal delay</b> for every note value</p></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="docs/screenshots/health.png" alt="Beat health: peak, clipping, loudness, dynamics and mono check"><p align="center"><b>Beat health</b> at a glance</p></td>
+    <td width="50%"><img src="docs/screenshots/previous.png" alt="Previous songs list with tempo, key and date"><p align="center"><b>Previous</b> songs, ready for invoices</p></td>
+  </tr>
+</table>
+
 ---
 
 ## Building Keygrid yourself
