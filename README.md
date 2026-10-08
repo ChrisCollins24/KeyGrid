@@ -127,6 +127,12 @@ To share Keygrid without the "Open Anyway" step, or to sell it, you'll need an A
 | `src-tauri/` | The Mac app shell (window size, history file, keep on top, icon) |
 | `.github/workflows/build-mac.yml` | The GitHub build recipe for Option B |
 
+## Credits
+
+Keygrid is built with [Tauri](https://tauri.app), the Outfit, Figtree and IBM Plex Mono fonts, and 280+ open-source Rust libraries. Its analysis builds on published research: Ellis (2007) for beat tracking, the Krumhansl–Kessler and Temperley key profiles for key detection, and ITU-R BS.1770 for loudness. Designed and directed by Christian Collins and written with the help of Claude by Anthropic. Full credits and license texts are in [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md), which also ships inside the app.
+
+Keygrid is not affiliated with or endorsed by Valhalla DSP, Avid (Pro Tools), Antares (Auto-Tune), Celemony (Melodyne) or Mixed In Key. Product names are trademarks of their respective owners and are mentioned only to describe compatibility.
+
 ## License
 
 Copyright © 2026 Christian Collins. All rights reserved. Keygrid is proprietary software; see [LICENSE](LICENSE). No part of it may be copied, modified or redistributed without written permission.

@@ -33,6 +33,13 @@ const bridge = `<script>
     saveHistory: function (arr) { return invoke('save_history', { data: JSON.stringify(arr) }); },
     setOnTop: function (on) { return invoke('set_on_top', { on: !!on }); }
   };
+  // links to websites open in the default browser instead of inside the app window
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="https://"]');
+    if (!a) return;
+    e.preventDefault();
+    invoke('open_external', { url: a.href });
+  });
 })();
 </script>`;
 

@@ -16,6 +16,13 @@
     saveHistory: function (arr) { return invoke('save_history', { data: JSON.stringify(arr) }); },
     setOnTop: function (on) { return invoke('set_on_top', { on: !!on }); }
   };
+  // links to websites open in the default browser instead of inside the app window
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="https://"]');
+    if (!a) return;
+    e.preventDefault();
+    invoke('open_external', { url: a.href });
+  });
 })();
 </script>
 <title>Keygrid Analyzer</title>
@@ -230,6 +237,9 @@ svg text { fill: var(--muted); font-family: var(--f-data); font-size: 10px; }
 .about-body { display: grid; gap: 8px; margin-top: 10px; max-width: 70ch; }
 .about p { margin: 0; }
 .about b { color: var(--ink); font-weight: 600; }
+.about a { color: var(--accent); }
+.about .fine { font-size: 11.5px; }
+.copyright { margin: 0; font-size: 11.5px; color: var(--muted); font-family: var(--f-data); }
 
 @media (max-width: 620px) {
   .summary { grid-template-columns: 1fr 1fr; }
@@ -301,7 +311,10 @@ svg text { fill: var(--muted); font-family: var(--f-data); font-size: 10px; }
     <p><b>Vocal delay</b> times are in milliseconds for any delay plugin. Dotted 1/8 and 1/4 are the most common for vocal echoes and throws.</p>
     <p><b>Beat health</b> checks the beat before you record on it. Peak is the loudest sample. Loudness is integrated LUFS (the streaming standard). Dynamics is the gap between peak and loudness; small numbers mean the beat is squashed. Mono check measures how the left and right sides line up; a negative number means parts of the beat cancel out on mono speakers.</p>
     <p><b>Check it by ear.</b> Press Play with click, then Jump to end. If the click is still locked to the kick at the end of the track, the BPM is right.</p>
+    <p><b>Credits.</b> Built with <a href="https://tauri.app" target="_blank" rel="noopener">Tauri</a> and the Outfit, Figtree and IBM Plex Mono fonts (SIL Open Font License). Beat tracking follows Ellis (2007); key detection uses the Krumhansl–Kessler and Temperley key profiles; loudness follows ITU-R BS.1770. Designed by Christian Collins and written with the help of Claude by Anthropic. Full credits and license texts: <a href="https://github.com/ChrisCollins24/KeyGrid/blob/main/THIRD-PARTY-NOTICES.md" target="_blank" rel="noopener">third-party notices</a>.</p>
+    <p class="fine">Keygrid is not affiliated with or endorsed by Valhalla DSP, Avid (Pro Tools), Antares (Auto-Tune), Celemony (Melodyne) or Mixed In Key. Product names are trademarks of their owners and are mentioned only to describe compatibility.</p>
   </div></details>
+  <p class="copyright">Keygrid © 2026 Christian Collins. All rights reserved.</p>
 </div>
 
 <div class="veil" id="dropVeil" aria-hidden="true">
