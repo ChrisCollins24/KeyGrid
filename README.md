@@ -6,9 +6,9 @@
 
 <p align="center">Key, BPM, reverb and delay times, all in one drag and drop.<br>Keygrid gives bedroom artists and engineers their time back, so they can focus on the music.</p>
 
-<p align="center"><a href="https://github.com/ChrisCollins24/Keygrid/releases/latest"><b>⬇ Download Keygrid for Mac</b></a> · <a href="https://keygridapp.github.io/app/">Try it in your browser</a> · <a href="https://keygridapp.github.io">Website</a></p>
+<p align="center"><a href="https://github.com/ChrisCollins24/Keygrid/releases/latest"><b>⬇ Download for Mac or Windows</b></a> · <a href="https://keygridapp.github.io/app/">Try it in your browser</a> · <a href="https://keygridapp.github.io">Website</a></p>
 
-<p align="center">Open the .dmg, drag Keygrid into Applications, and the first time click <b>Open Anyway</b> in System Settings → Privacy &amp; Security.</p>
+<p align="center"><b>Mac:</b> open the .dmg, drag Keygrid into Applications, and the first time click <b>Open Anyway</b> in System Settings → Privacy &amp; Security.<br><b>Windows:</b> run the setup .exe. If Windows shows "Windows protected your PC", click <b>More info</b> → <b>Run anyway</b>.</p>
 
 ---
 
@@ -28,7 +28,7 @@ Keygrid is built for the engineers and artists who are just getting started, and
 - **Vocal delay** times for every common note value
 - **Beat health:** peak, clipping, loudness (LUFS), dynamics and mono compatibility
 - **Previous:** a saved list of every song you've analyzed, ready for invoices
-- Runs on Apple Silicon and Intel Macs. Your audio never leaves your computer.
+- Runs on Mac (Apple Silicon and Intel) and Windows 10 and 11, or in your browser. Your audio never leaves your computer.
 
 ## Screenshots
 

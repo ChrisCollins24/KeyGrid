@@ -1,10 +1,18 @@
 # Troubleshooting
 
-### "Keygrid can't be opened" or "Apple could not verify Keygrid"
+### Windows says "Windows protected your PC"
+
+This is expected the first time, because Keygrid isn't signed with a paid code-signing certificate yet. Click **More info**, then **Run anyway**.
+
+### Windows says the download "isn't commonly downloaded"
+
+In Edge or Chrome's downloads list, choose **Keep** (in Edge, click **…** next to the file, then **Keep**, then **Show more → Keep anyway**). This warning shows for new apps that haven't been downloaded by many people yet.
+
+### "Keygrid can't be opened" or "Apple could not verify Keygrid" (Mac)
 
 This is expected the first time, because Keygrid isn't signed with a paid Apple Developer account yet. Follow the **Open Anyway** steps in [[Installing and Updating#the-first-time-you-open-it]].
 
-### "Keygrid is damaged and can't be opened"
+### "Keygrid is damaged and can't be opened" (Mac)
 
 Keygrid isn't actually damaged. macOS shows this for some downloaded apps that aren't signed. Open **Terminal** (Applications → Utilities), paste this line and press Return:
 
@@ -22,7 +30,7 @@ Then open Keygrid again.
 
 ### There's no sound from Play with click, the piano or Play chord
 
-- Check your Mac's volume and output device (System Settings → Sound → Output).
+- Check your computer's volume and output device (Mac: System Settings → Sound → Output; Windows: Settings → System → Sound).
 - If you use an audio interface, make sure it's the selected output and its monitor level is up.
 - Quit and reopen Keygrid.
 
@@ -36,7 +44,7 @@ Your history is stored separately from the app, so updating shouldn't remove it.
 
 ### Keep on top doesn't stay on top of full-screen apps
 
-macOS doesn't allow windows to float over apps in full-screen mode. Use Pro Tools in a normal or maximized window instead.
+On Mac, windows can't float over apps in full-screen mode, so use Pro Tools in a normal or maximized window instead. On Windows, Keep on top works over normal and maximized windows, but not over apps using exclusive full-screen.
 
 ### Something else isn't working
 

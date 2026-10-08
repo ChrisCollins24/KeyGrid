@@ -2,9 +2,9 @@
 
 # Keygrid help
 
-Keygrid gives you the BPM, key, vocal reverb and delay times, and a health check for any beat, all from one drag and drop. Your audio never leaves your computer.
+Keygrid gives you the BPM, key, vocal reverb and delay times, and a health check for any beat, all from one drag and drop. Your audio never leaves your computer. Available for Mac and Windows, and in your browser.
 
-**[⬇ Download the latest version](https://github.com/ChrisCollins24/Keygrid/releases/latest)** · [Website](https://keygridapp.github.io) · Mac, Apple Silicon and Intel, macOS 11 or newer
+**[⬇ Download the latest version](https://github.com/ChrisCollins24/Keygrid/releases/latest)** · [Website](https://keygridapp.github.io) · Mac (Apple Silicon and Intel, macOS 11+) and Windows 10/11
 
 <img src="https://github.com/ChrisCollins24/Keygrid/raw/main/docs/screenshots/notes.png" alt="Keygrid showing a beat at 142.0004 BPM in F minor">
 
@@ -12,7 +12,7 @@ Keygrid gives you the BPM, key, vocal reverb and delay times, and a health check
 
 | Page | What's in it |
 |---|---|
-| [[Installing and Updating]] | Download, the first-time "Open Anyway" step, updating, moving your history to another Mac |
+| [[Installing and Updating]] | Download, the first-time security step on Mac and Windows, updating, moving your history to another computer |
 | [[Using Keygrid]] | Every part of the app: tempo, key and piano, reverb, delay, beat health, Previous |
 | [[FAQ]] | Half-speed BPM, relative keys, what the health readings mean, privacy |
 | [[Troubleshooting]] | Keygrid won't open, files won't load, no sound |

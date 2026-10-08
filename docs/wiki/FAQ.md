@@ -38,11 +38,11 @@ No. Any reverb with pre-delay and decay controls works: copy the PreDelay and De
 
 ### Does Keygrid upload my audio?
 
-No. Everything is analyzed on your Mac. Keygrid doesn't collect data or send anything over the internet.
+No. Everything is analyzed on your computer. Keygrid doesn't collect data or send anything over the internet.
 
 ### Is there a Windows version?
 
-Not yet. Keygrid is Mac-only for now.
+Yes. Keygrid runs on 64-bit Windows 10 and 11. Download the `setup.exe` from the [latest release](https://github.com/ChrisCollins24/Keygrid/releases/latest). There's also a [browser version](https://keygridapp.github.io/app/) that works on any computer.
 
 ### Is Keygrid free?
 
