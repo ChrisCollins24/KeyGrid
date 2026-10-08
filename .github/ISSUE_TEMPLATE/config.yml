@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Ask a question
+    url: https://github.com/ChrisCollins24/KeyGrid/discussions/categories/q-a
+    about: Questions about using Keygrid go in Discussions.
+  - name: Share an idea or feedback
+    url: https://github.com/ChrisCollins24/KeyGrid/discussions/categories/ideas
+    about: Talk through ideas with other users before opening a feature request.
+  - name: Report a security problem
+    url: https://github.com/ChrisCollins24/KeyGrid/security/advisories/new
+    about: Report security issues privately, not in a public issue.

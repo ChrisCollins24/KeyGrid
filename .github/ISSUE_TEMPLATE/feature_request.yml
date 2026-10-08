@@ -1,0 +1,29 @@
+name: Feature request
+description: Suggest an idea that would make Keygrid more useful in your sessions
+title: "[Idea] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: Describe what you're trying to do in your session today.
+      placeholder: "When I record vocals I always have to look up..."
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you like Keygrid to do?
+    validations:
+      required: true
+  - type: dropdown
+    id: role
+    attributes:
+      label: How do you use Keygrid?
+      options:
+        - Recording / mixing engineer
+        - Artist or vocalist
+        - Producer / beatmaker
+        - DJ
+        - Other

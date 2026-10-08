@@ -1,0 +1,69 @@
+name: Bug report
+description: Something isn't working, or a reading looks wrong
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for taking the time to report this. The more detail you can share, the faster it can be fixed.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe the problem. If a BPM or key looked off, say what Keygrid showed and what you expected.
+      placeholder: "Keygrid showed 70.0000 BPM, but the beat is 140."
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Drag in an MP3
+        2. Open the Reverb tab
+        3. ...
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Keygrid version
+      description: Shown in the name of the download you installed, for example 1.0.3.
+      placeholder: "1.0.3"
+    validations:
+      required: true
+  - type: input
+    id: macos
+    attributes:
+      label: macOS version
+      description: Apple menu → About This Mac.
+      placeholder: "macOS 15.1"
+    validations:
+      required: true
+  - type: dropdown
+    id: mac-type
+    attributes:
+      label: Mac type
+      options:
+        - Apple Silicon (M1, M2, M3, M4)
+        - Intel
+        - Not sure
+    validations:
+      required: true
+  - type: dropdown
+    id: file-type
+    attributes:
+      label: Audio file type
+      options:
+        - WAV
+        - MP3
+        - FLAC
+        - M4A / AAC
+        - OGG
+        - AIFF
+        - Not related to a file
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else?
+      description: Screenshots help a lot. Please don't attach copyrighted songs.
