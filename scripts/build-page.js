@@ -7,9 +7,8 @@ const here = __dirname;
 const root = path.join(here, '..');
 let page = fs.readFileSync(path.join(here, 'page.template.html'), 'utf8');
 const engine = fs.readFileSync(path.join(here, 'analysis.js'), 'utf8');
-const example = fs.readFileSync(path.join(here, 'example.json'), 'utf8');
 
-page = page.replace('__ENGINE__', () => engine).replace('__EXAMPLE__', () => example);
+page = page.replace('__ENGINE__', () => engine);
 
 // Fonts ship inside the app so it works offline: swap the Google Fonts links for local @font-face rules.
 page = page.replace(/<link rel="preconnect"[^>]*>\s*/g, '').replace(/<link rel="stylesheet" href="https:\/\/fonts\.googleapis\.com[^>]*>\s*/, '');
