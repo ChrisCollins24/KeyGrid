@@ -3,7 +3,8 @@ name: Build Keygrid for Mac
 on:
   workflow_dispatch:      # run it any time from the Actions tab
   push:
-    tags: ['v*']          # pushing a version tag like v1.0.0 builds and publishes a download
+    branches: [main]      # every update to the app builds a fresh download
+    paths-ignore: ['README.md']
 
 permissions:
   contents: write         # lets the build attach the installer to a Release
@@ -35,11 +36,18 @@ jobs:
           path: src-tauri/target/universal-apple-darwin/release/bundle/dmg/*.dmg
           if-no-files-found: error
 
-      - name: Publish the download (version tags only)
-        if: startsWith(github.ref, 'refs/tags/v')
+      - name: Read version
+        id: ver
+        run: echo "v=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: Publish the download
         uses: softprops/action-gh-release@v2
         with:
-          name: Keygrid ${{ github.ref_name }}
+          tag_name: v${{ steps.ver.outputs.v }}
+          target_commitish: ${{ github.sha }}
+          name: Keygrid ${{ steps.ver.outputs.v }}
+          make_latest: true
+          overwrite_files: true
           files: src-tauri/target/universal-apple-darwin/release/bundle/dmg/*.dmg
           body: |
             **Download the .dmg below**, open it, and drag Keygrid into Applications.
