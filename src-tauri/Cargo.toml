@@ -1,6 +1,6 @@
 [package]
 name = "keygrid"
-version = "1.0.2"
+version = "1.0.3"
 description = "Precision BPM and key analyzer for studio engineers"
 edition = "2021"
 

@@ -227,7 +227,6 @@ svg text { fill: var(--muted); font-family: var(--f-data); font-size: 10px; }
 /* empty state */
 .dim { color: var(--muted) !important; opacity: 0.75; }
 .big.dim, .keyname.dim { letter-spacing: 0.06em; }
-.piano.blank button { cursor: default; }
 
 /* player strip */
 .strip { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding: 9px 16px; border-top: 1px solid var(--line); background: var(--sunk); }
@@ -1149,6 +1148,20 @@ self.onmessage = e => {
     t.el.querySelectorAll('.piano .down').forEach(k => k.classList.remove('down'));
     t.run = null;
   }
+  // ½× / 1× / 2× choice carries over to the next import and between launches
+  let defaultMult = 1;
+  try { const m = Number(localStorage.getItem('kg-mult')); if (m === 0.5 || m === 1 || m === 2) defaultMult = m; } catch (e) {}
+  function setDefaultMult(m) { defaultMult = m; try { localStorage.setItem('kg-mult', String(m)); } catch (e) {} }
+
+  // play any key on a piano, used by the empty card (no key detected, so no tuning offset)
+  function bindFreePiano(root, detune) {
+    root.querySelectorAll('[data-midi]').forEach(k => {
+      const hit = async () => { await getCtx().resume(); const m = Number(k.dataset.midi); playNote(m, 0, 1.4, detune || 0); flash(root, m, 0, 180); };
+      k.addEventListener('pointerdown', e => { e.preventDefault(); hit(); });
+      k.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); hit(); } });
+    });
+  }
+
   function bindPiano(t) {
     const K = t.result.key, root = t.el.querySelector('.piano');
     if (!K || !root) return;
@@ -1269,7 +1282,7 @@ self.onmessage = e => {
         <span class="time" data-time>${t.playing ? '' : '0:00 / ' + fmtTime(r.duration)}</span>
         <span class="hint">${canPlay ? 'If the click stays on the kick through the end, the BPM is locked.' : ''}</span>
       </div>`;
-    t.el.querySelectorAll('[data-mult]').forEach(b => b.addEventListener('click', () => { t.mult = Number(b.dataset.mult); render(t); }));
+    t.el.querySelectorAll('[data-mult]').forEach(b => b.addEventListener('click', () => { t.mult = Number(b.dataset.mult); setDefaultMult(t.mult); render(t); }));
     bindPiano(t);
     const tabs = [...t.el.querySelectorAll('[data-fx]')];
     tabs.forEach((b, i) => {
@@ -1326,7 +1339,7 @@ self.onmessage = e => {
     el.className = 'deck';
     el.hidden = true;
     $('#list').append(el);
-    const t = { id, el, mult: 1, ...opts };
+    const t = { id, el, mult: defaultMult, ...opts };
     tracks.set(id, t);
     renderPending(t, 0);
     queue.push(t);
@@ -1568,13 +1581,13 @@ self.onmessage = e => {
       let whites = '', blacks = '';
       for (let o = 0; o < 2; o++) for (let pc = 0; pc < 12; pc++) {
         const midi = BASE + o * 12 + pc;
-        if (pc in BLACK) blacks += `<button type="button" class="bk" style="left:${(((o * 7 + BLACK[pc] + 1) / 14) * 100 - 2.2).toFixed(2)}%" data-midi="${midi}" tabindex="-1" aria-hidden="true"></button>`;
-        else whites += `<button type="button" class="wk" data-midi="${midi}" tabindex="-1" aria-hidden="true">${pc === 0 ? 'C' + (3 + o) : ''}</button>`;
+        if (pc in BLACK) blacks += `<button type="button" class="bk" style="left:${(((o * 7 + BLACK[pc] + 1) / 14) * 100 - 2.2).toFixed(2)}%" data-midi="${midi}" aria-label="${SHARP[pc]}${3 + o}"></button>`;
+        else whites += `<button type="button" class="wk" data-midi="${midi}" aria-label="${SHARP[pc]}${3 + o}">${pc === 0 ? 'C' + (3 + o) : ''}</button>`;
       }
       body = `<div class="keys">
           <div class="sec-head"><span class="scale-notes dim">${DASH}</span>
             <span class="row"><button class="btn" type="button" disabled>Play scale</button><button class="btn" type="button" disabled>Play chord</button></span></div>
-          <div class="piano blank" aria-label="Piano, no key detected yet">${whites}${blacks}</div>
+          <div class="piano blank" role="group" aria-label="Piano">${whites}${blacks}</div>
         </div>
         <div class="notes-extra">
           <div class="chroma-mini">${chromaBars({ chroma: new Array(12).fill(0), key: { tonic: -100, mode: 'major' } })}</div>
@@ -1600,8 +1613,12 @@ self.onmessage = e => {
       <div class="sec"><div class="summary">
         <div class="tile"><div class="tile-head"><span class="label">Tempo</span></div>
           <div class="big dim">${DASH}<span class="unit">BPM</span></div>
-          <div class="sub">Drop a beat to analyze</div>
-          <span class="seg tile-foot" aria-hidden="true"><button type="button" disabled>½×</button><button type="button" disabled aria-pressed="true">1×</button><button type="button" disabled>2×</button></span></div>
+          <div class="sub">Drop a beat to analyze${defaultMult !== 1 ? ' · will show at ' + (defaultMult === 2 ? '2×' : '½×') : ''}</div>
+          <span class="seg tile-foot" role="group" aria-label="Tempo multiplier for the next import">
+            <button type="button" data-mult="0.5" aria-pressed="${defaultMult === 0.5}">½×</button>
+            <button type="button" data-mult="1" aria-pressed="${defaultMult === 1}">1×</button>
+            <button type="button" data-mult="2" aria-pressed="${defaultMult === 2}">2×</button>
+          </span></div>
         <div class="tile"><div class="tile-head"><span class="label">Key</span></div>
           <div class="keyname dim">${DASH}</div><div class="sub">${DASH}</div></div>
         <div class="tile"><div class="tile-head"><span class="label">Relative key</span></div>
@@ -1617,6 +1634,9 @@ self.onmessage = e => {
         <span class="time">0:00 / 0:00</span>
         <span class="hint">Drop a beat anywhere on this window, or use Choose files.</span>
       </div>`;
+    t.el.querySelectorAll('[data-mult]').forEach(b => b.addEventListener('click', () => { setDefaultMult(Number(b.dataset.mult)); renderEmpty(t); }));
+    const freePiano = t.el.querySelector('.piano');
+    if (freePiano) bindFreePiano(freePiano, 0);
     const tabs = [...t.el.querySelectorAll('[data-fx]')];
     tabs.forEach((b, i) => {
       b.addEventListener('click', () => { t.fx = b.dataset.fx; renderEmpty(t); t.el.querySelector('[data-fx="' + t.fx + '"]').focus(); });
