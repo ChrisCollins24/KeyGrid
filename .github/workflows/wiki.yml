@@ -1,0 +1,33 @@
+name: Publish wiki
+
+# Copies the pages in docs/wiki into the repository's GitHub wiki.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['docs/wiki/**', '.github/workflows/wiki.yml']
+
+permissions:
+  contents: write
+
+jobs:
+  wiki:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Push pages to the wiki
+        env:
+          TOKEN: ${{ github.token }}
+        run: |
+          git clone "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.wiki.git" wiki
+          cp docs/wiki/*.md wiki/
+          cd wiki
+          git config user.name "Keygrid wiki bot"
+          git config user.email "keygridapp@gmail.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Wiki already up to date"
+          else
+            git commit -m "Update wiki from docs/wiki (${GITHUB_SHA::7})"
+            git push origin HEAD
+          fi

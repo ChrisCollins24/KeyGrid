@@ -1,0 +1,1 @@
+Keygrid © 2026 Christian Collins · [Download](https://github.com/ChrisCollins24/KeyGrid/releases/latest) · [Changelog](https://github.com/ChrisCollins24/KeyGrid/blob/main/CHANGELOG.md) · keygridapp@gmail.com

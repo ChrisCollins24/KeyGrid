@@ -164,6 +164,10 @@ To share Keygrid without the "Open Anyway" step, or to sell it, you'll need an A
 | `src-tauri/` | The Mac app shell (window size, history file, keep on top, icon) |
 | `.github/workflows/build-mac.yml` | The GitHub build recipe for Option B |
 
+## Help
+
+Install steps, a guide to every part of the app, an FAQ and troubleshooting are in the [Keygrid wiki](https://github.com/ChrisCollins24/KeyGrid/wiki).
+
 ## What's new
 
 See [CHANGELOG.md](CHANGELOG.md) for every version's changes. Each download on the [Releases page](https://github.com/ChrisCollins24/KeyGrid/releases) lists what changed in that version.
