@@ -190,6 +190,11 @@ svg text { fill: var(--muted); font-family: var(--f-data); font-size: 10px; }
 @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
 @media (prefers-reduced-motion: reduce) { .veil-card { transform: none; } .veil.on .veil-card svg { animation: none; } }
 
+/* empty state */
+.dim { color: var(--muted) !important; opacity: 0.75; }
+.big.dim, .keyname.dim { letter-spacing: 0.06em; }
+.piano.blank button { cursor: default; }
+
 /* player strip */
 .strip { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding: 9px 16px; border-top: 1px solid var(--line); background: var(--sunk); }
 .strip .time { font-family: var(--f-data); font-size: 12.5px; font-variant-numeric: tabular-nums; color: var(--muted); min-width: 90px; }
@@ -332,7 +337,6 @@ self.onmessage = e => {
 
 <script>
 (() => {
-  const EXAMPLE = __EXAMPLE__;
   const MAJ = ['C', 'D♭', 'D', 'E♭', 'E', 'F', 'F♯', 'G', 'A♭', 'A', 'B♭', 'B'];
   const MIN = ['C', 'C♯', 'D', 'E♭', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'B♭', 'B'];
   const PCS = ['C', 'C♯', 'D', 'E♭', 'E', 'F', 'F♯', 'G', 'A♭', 'A', 'B♭', 'B'];
@@ -680,7 +684,6 @@ self.onmessage = e => {
     const canPlay = !!(t.file || t.samples) && T;
     t.el.innerHTML = `
       <div class="deck-head"><span class="name">${esc(t.name)}</span>
-        ${t.example ? '<span class="tag note">Example</span>' : ''}
         <span class="meta">${fmtTime(r.duration)} · ${(r.sampleRate / 1000).toFixed(1)} kHz</span></div>
       <div class="sec"><div class="summary">${tempoTile}${keyTile}${relTile}</div>
         ${notes.map(n => `<p class="hint">${n}</p>`).join('')}</div>
@@ -689,7 +692,7 @@ self.onmessage = e => {
         <button class="btn primary" type="button" data-act="play" ${canPlay ? '' : 'disabled'}>${t.playing ? 'Stop' : 'Play with click'}</button>
         <button class="btn" type="button" data-act="end" ${canPlay ? '' : 'disabled'}>Jump to end</button>
         <span class="time" data-time>${t.playing ? '' : '0:00 / ' + fmtTime(r.duration)}</span>
-        <span class="hint">${t.example ? 'Example data from a synthetic test at exactly 127.985 BPM in E major. Run the test track to analyze it live.' : canPlay ? 'If the click stays on the kick through the end, the BPM is locked.' : ''}</span>
+        <span class="hint">${canPlay ? 'If the click stays on the kick through the end, the BPM is locked.' : ''}</span>
       </div>`;
     t.el.querySelectorAll('[data-mult]').forEach(b => b.addEventListener('click', () => { t.mult = Number(b.dataset.mult); render(t); }));
     bindPiano(t);
@@ -979,12 +982,82 @@ self.onmessage = e => {
     if (saved) setPin(true);
   }
 
-  // ---------- example on load ----------
+  // ---------- empty card before anything is imported ----------
+  const DASH = '—';
+  function renderEmpty(t) {
+    const fx = t.fx || 'notes';
+    const tab = (id, label) => `<button type="button" role="tab" id="fx-${t.id}-${id}" data-fx="${id}" aria-selected="${fx === id}" aria-controls="fxp-${t.id}" tabindex="${fx === id ? 0 : -1}">${label}</button>`;
+    const dashRow = n => Array.from({ length: n }, () => `<td class="dim">${DASH}</td>`).join('');
+    let body;
+    if (fx === 'notes') {
+      let whites = '', blacks = '';
+      for (let o = 0; o < 2; o++) for (let pc = 0; pc < 12; pc++) {
+        const midi = BASE + o * 12 + pc;
+        if (pc in BLACK) blacks += `<button type="button" class="bk" style="left:${(((o * 7 + BLACK[pc] + 1) / 14) * 100 - 2.2).toFixed(2)}%" data-midi="${midi}" tabindex="-1" aria-hidden="true"></button>`;
+        else whites += `<button type="button" class="wk" data-midi="${midi}" tabindex="-1" aria-hidden="true">${pc === 0 ? 'C' + (3 + o) : ''}</button>`;
+      }
+      body = `<div class="keys">
+          <div class="sec-head"><span class="scale-notes dim">${DASH}</span>
+            <span class="row"><button class="btn" type="button" disabled>Play scale</button><button class="btn" type="button" disabled>Play chord</button></span></div>
+          <div class="piano blank" aria-label="Piano, no key detected yet">${whites}${blacks}</div>
+        </div>
+        <div class="notes-extra">
+          <div class="chroma-mini">${chromaBars({ chroma: new Array(12).fill(0), key: { tonic: -100, mode: 'major' } })}</div>
+          <dl class="facts"><dt>Mixes well with</dt><dd class="dim">${DASH}</dd><dt>Next closest</dt><dd class="dim">${DASH}</dd></dl>
+        </div>`;
+    } else if (fx === 'reverb') {
+      body = `<div class="fx-row"><span class="seg" aria-hidden="true">${Object.keys(FEELS).map(f => `<button type="button" disabled aria-pressed="${f === 'straight'}">${f[0].toUpperCase() + f.slice(1)}</button>`).join('')}</span><span class="sub">Vocal Reverb · ${DASH} BPM</span></div>
+        <div class="rv-scroll"><table class="rv-table">
+          <thead><tr><th scope="col">Mode</th><th scope="col">PreDelay</th><th scope="col">Decay</th><th scope="col">Mix</th><th scope="col">Size</th><th scope="col">High Cut</th><th scope="col">Low Cut</th></tr></thead>
+          <tbody>${REVERBS.map(r => `<tr><th scope="row"><span class="rv-name">${r.mode}</span></th>${dashRow(6)}</tr>`).join('')}</tbody></table></div>
+        <span class="sub">Color: Now</span>`;
+    } else if (fx === 'delay') {
+      body = `<div class="fx-row"><span class="sub">Vocal Delay · ${DASH} BPM</span></div>
+        <div class="rv-scroll"><table class="rv-table dl-table">
+          <thead><tr><th scope="col">Note</th><th scope="col">Straight</th><th scope="col">Dotted</th><th scope="col">Triplet</th></tr></thead>
+          <tbody>${DELAY_NOTES.map(([label]) => `<tr><th scope="row"><span class="rv-name">${label}</span></th>${dashRow(3)}</tr>`).join('')}</tbody></table></div>
+        <span class="sub">Feedback 25% · Mix 15% · High Cut 6 kHz · Low Cut 300 Hz</span>`;
+    } else {
+      body = `<div class="hl-grid">${['Peak', 'Clipping', 'Loudness', 'Dynamics', 'Mono check'].map(n => `<div class="hl-tile"><span class="hl-name">${n}</span><span class="hl-val dim">${DASH}</span><span class="tag note">${DASH}</span></div>`).join('')}</div>`;
+    }
+    t.el.innerHTML = `
+      <div class="deck-head"><span class="name dim">No track loaded</span><span class="meta">${DASH}</span></div>
+      <div class="sec"><div class="summary">
+        <div class="tile"><div class="tile-head"><span class="label">Tempo</span></div>
+          <div class="big dim">${DASH}<span class="unit">BPM</span></div>
+          <div class="sub">Drop a beat to analyze</div>
+          <span class="seg tile-foot" aria-hidden="true"><button type="button" disabled>½×</button><button type="button" disabled aria-pressed="true">1×</button><button type="button" disabled>2×</button></span></div>
+        <div class="tile"><div class="tile-head"><span class="label">Key</span></div>
+          <div class="keyname dim">${DASH}</div><div class="sub">${DASH}</div></div>
+        <div class="tile"><div class="tile-head"><span class="label">Relative key</span></div>
+          <div class="keyname dim">${DASH}</div><div class="sub">${DASH}</div></div>
+      </div></div>
+      <div class="sec">
+        <div class="fx-tabs" role="tablist" aria-label="Track tools">${tab('notes', 'Notes')}${tab('reverb', 'Reverb')}${tab('delay', 'Delay')}${tab('health', 'Health')}</div>
+        <div class="fx-panel" role="tabpanel" id="fxp-${t.id}" aria-labelledby="fx-${t.id}-${fx}">${body}</div>
+      </div>
+      <div class="strip">
+        <button class="btn primary" type="button" disabled>Play with click</button>
+        <button class="btn" type="button" disabled>Jump to end</button>
+        <span class="time">0:00 / 0:00</span>
+        <span class="hint">Drop a beat anywhere on this window, or use Choose files.</span>
+      </div>`;
+    const tabs = [...t.el.querySelectorAll('[data-fx]')];
+    tabs.forEach((b, i) => {
+      b.addEventListener('click', () => { t.fx = b.dataset.fx; renderEmpty(t); t.el.querySelector('[data-fx="' + t.fx + '"]').focus(); });
+      b.addEventListener('keydown', e => {
+        if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+        e.preventDefault();
+        t.fx = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length].dataset.fx;
+        renderEmpty(t); t.el.querySelector('[data-fx="' + t.fx + '"]').focus();
+      });
+    });
+  }
   const el = document.createElement('article'); el.className = 'deck';
   $('#list').append(el);
-  const ex = { id: nextId++, el, mult: 1, name: 'Example · synthetic test track', example: true, result: EXAMPLE };
+  const ex = { id: nextId++, el, mult: 1, name: '', example: true, result: null };
   tracks.set(ex.id, ex);
   currentId = ex.id;
-  render(ex);
+  renderEmpty(ex);
 })();
 </script>
