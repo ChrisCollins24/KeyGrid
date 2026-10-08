@@ -4,7 +4,7 @@ on:
   workflow_dispatch:      # run it any time from the Actions tab
   push:
     branches: [main]      # every update to the app builds a fresh download
-    paths-ignore: ['README.md']
+    paths-ignore: ['README.md', 'docs/**']
 
 permissions:
   contents: write         # lets the build attach the installer to a Release

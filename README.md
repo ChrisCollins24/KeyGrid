@@ -1,6 +1,14 @@
-# Keygrid for Mac
+<p align="center">
+  <img src="src-tauri/icons/128x128@2x.png" width="128" height="128" alt="Keygrid app icon">
+</p>
 
-**[⬇ Download Keygrid for Mac](https://github.com/ChrisCollins24/KeyGrid/releases/latest)** · open the .dmg, drag Keygrid into Applications, and the first time click **Open Anyway** in System Settings → Privacy & Security.
+<h1 align="center">Keygrid</h1>
+
+<p align="center">Precision BPM &amp; key analyzer for studio engineers</p>
+
+<p align="center"><a href="https://github.com/ChrisCollins24/KeyGrid/releases/latest"><b>⬇ Download Keygrid for Mac</b></a></p>
+
+<p align="center">Open the .dmg, drag Keygrid into Applications, and the first time click <b>Open Anyway</b> in System Settings → Privacy &amp; Security.</p>
 
 ---
 
