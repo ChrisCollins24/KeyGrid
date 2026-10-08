@@ -1,5 +1,9 @@
 # Keygrid for Mac
 
+**[⬇ Download Keygrid for Mac](https://github.com/ChrisCollins24/KeyGrid/releases/latest)** · open the .dmg, drag Keygrid into Applications, and the first time click **Open Anyway** in System Settings → Privacy & Security.
+
+---
+
 Keygrid is a precision BPM and key analyzer for studio engineers. This folder turns it into a real Mac app (`Keygrid.app`) that runs on both Apple Silicon (M1–M4) and Intel Macs.
 
 You build it **once**, then copy the installer (`Keygrid_1.0.0_universal.dmg`) to any Mac (a friend's laptop, the studio Mac) and install it there. The other Macs don't need any of the tools below.
