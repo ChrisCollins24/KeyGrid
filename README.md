@@ -6,7 +6,7 @@
 
 <p align="center">Key, BPM, reverb and delay times, all in one drag and drop.<br>Keygrid gives bedroom artists and engineers their time back, so they can focus on the music.</p>
 
-<p align="center"><a href="https://github.com/ChrisCollins24/Keygrid/releases/latest"><b>⬇ Download Keygrid for Mac</b></a> · <a href="https://keygrid.com">keygrid.com</a></p>
+<p align="center"><a href="https://github.com/ChrisCollins24/Keygrid/releases/latest"><b>⬇ Download Keygrid for Mac</b></a> · <a href="https://keygridapp.github.io">Website</a></p>
 
 <p align="center">Open the .dmg, drag Keygrid into Applications, and the first time click <b>Open Anyway</b> in System Settings → Privacy &amp; Security.</p>
 

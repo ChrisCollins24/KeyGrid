@@ -4,7 +4,7 @@
 
 Keygrid gives you the BPM, key, vocal reverb and delay times, and a health check for any beat, all from one drag and drop. Your audio never leaves your computer.
 
-**[⬇ Download the latest version](https://github.com/ChrisCollins24/Keygrid/releases/latest)** · [keygrid.com](https://keygrid.com) · Mac, Apple Silicon and Intel, macOS 11 or newer
+**[⬇ Download the latest version](https://github.com/ChrisCollins24/Keygrid/releases/latest)** · [Website](https://keygridapp.github.io) · Mac, Apple Silicon and Intel, macOS 11 or newer
 
 <img src="https://github.com/ChrisCollins24/Keygrid/raw/main/docs/screenshots/notes.png" alt="Keygrid showing a beat at 142.0004 BPM in F minor">
 
