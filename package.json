@@ -11,5 +11,7 @@
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2"
-  }
+  },
+  "license": "UNLICENSED",
+  "author": "Christian Collins"
 }

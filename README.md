@@ -126,3 +126,7 @@ To share Keygrid without the "Open Anyway" step, or to sell it, you'll need an A
 | `src/` | The finished app page and its fonts |
 | `src-tauri/` | The Mac app shell (window size, history file, keep on top, icon) |
 | `.github/workflows/build-mac.yml` | The GitHub build recipe for Option B |
+
+## License
+
+Copyright © 2026 Christian Collins. All rights reserved. Keygrid is proprietary software; see [LICENSE](LICENSE). No part of it may be copied, modified or redistributed without written permission.
