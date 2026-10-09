@@ -2,6 +2,11 @@
 
 All notable changes to Keygrid. Newest first.
 
+## 1.1.2 (2026-10-09)
+
+### Fixed
+- Live recordings with a real drummer are now labeled **Variable tempo** instead of **Weak beat**. "Weak beat" is kept for audio with no clear beat at all.
+
 ## 1.1.1 (2026-10-09)
 
 ### Fixed

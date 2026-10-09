@@ -1250,7 +1250,8 @@ self.onmessage = e => {
   // ---------- rendering ----------
   function tempoStatus(T) {
     if (!T) return { cls: 'bad', text: 'No steady beat' };
-    if (T.beatStrength < 3.6 || T.jitterMs > 40) return { cls: 'bad', text: 'Weak beat' };
+    // beats scattered by more than ~45 ms aren't a playable grid (noise, drumless pads); live drums sit well under that
+    if (T.jitterMs > 45) return { cls: 'bad', text: 'Weak beat' };
     if (T.variable) return { cls: 'warn', text: 'Variable tempo' };
     return { cls: 'good', text: 'Steady grid' };
   }
