@@ -43,7 +43,10 @@ function onsetEnvelope(x, sr, hop, N, progress) {
   const frames = Math.max(0, Math.floor((x.length - N) / hop) + 1);
   const env = new Float32Array(frames);
   const low = new Float32Array(frames);
+  const body = new Float32Array(frames);
   const lowBin = Math.max(2, Math.round(160 / sr * N));
+  const bodyBin = Math.max(lowBin + 1, Math.round(1500 / sr * N));
+  let prevLin = new Float32Array(N / 2), curLin = new Float32Array(N / 2);
   const re = new Float64Array(N), im = new Float64Array(N);
   const half = N / 2;
   let prev = new Float32Array(half), cur = new Float32Array(half);
@@ -52,65 +55,77 @@ function onsetEnvelope(x, sr, hop, N, progress) {
     const off = f * hop;
     for (let i = 0; i < N; i++) { re[i] = x[off + i] * win[i]; im[i] = 0; }
     fftInPlace(re, im);
-    let flux = 0, lf = 0;
+    let flux = 0, lf = 0, bf = 0;
     for (let k = 1; k < maxBin; k++) {
-      const m = Math.log1p(1000 * Math.hypot(re[k], im[k]));
+      const mag = Math.hypot(re[k], im[k]);
+      const m = Math.log1p(1000 * mag);
       cur[k] = m;
       const d = m - prev[k];
       if (d > 0 && f > 0) { flux += d; if (k <= lowBin) lf += d; }
+      if (k <= bodyBin) { curLin[k] = mag; const dl = mag - prevLin[k]; if (dl > 0 && f > 0) bf += dl; }
     }
-    env[f] = flux; low[f] = lf;
+    env[f] = flux; low[f] = lf; body[f] = bf;
     const t = prev; prev = cur; cur = t;
+    const tl = prevLin; prevLin = curLin; curLin = tl;
     if (progress && (f & 2047) === 0) progress(0.05 + 0.45 * f / frames);
   }
-  return { env, low };
+  return { env, low, body };
 }
 
 // ---------- Global tempo estimate (weighted autocorrelation) ----------
-function estimatePeriod(o, fps) {
-  const n = o.length;
-  const minLag = Math.floor(fps * 60 / 200), maxLag = Math.ceil(fps * 60 / 60);
-  const top = 4 * maxLag + 2;
-  const ac = new Float64Array(top + 1);
-  for (let lag = 1; lag <= top; lag++) {
+function autocorr(o, top) {
+  const n = o.length, ac = new Float64Array(top + 2);
+  for (let lag = 1; lag <= top + 1; lag++) {
     let s = 0;
     for (let i = 0; i + lag < n; i++) s += o[i] * o[i + lag];
     ac[lag] = s / Math.max(1, n - lag);
   }
-  const acAt = l => { const i = Math.floor(l), f = l - i; return i + 1 <= top ? ac[i] * (1 - f) + ac[i + 1] * f : 0; };
-  // comb score: a true beat period also lines up at 2x, 3x, 4x its length
-  const comb = l => (acAt(l) + acAt(2 * l) + acAt(3 * l) + acAt(4 * l)) / 4;
-  // tatum: the fastest strong pulse (e.g. hi-hats). Beat periods should be 2^n multiples of it.
-  const tMin = Math.max(2, Math.floor(fps * 60 / 480));
-  let acMax = 0;
-  for (let lag = tMin; lag <= maxLag; lag++) acMax = Math.max(acMax, ac[lag]);
-  let tatum = 0;
-  for (let lag = tMin; lag <= maxLag; lag++) {
-    if (ac[lag] >= ac[lag - 1] && ac[lag] >= ac[lag + 1] && ac[lag] >= 0.4 * acMax) {
-      const a = ac[lag - 1], b = ac[lag], c = ac[lag + 1], den = a - 2 * b + c;
-      tatum = lag + (den !== 0 ? Math.max(-0.5, Math.min(0.5, 0.5 * (a - c) / den)) : 0);
-      break;
-    }
-  }
-  const meterFactor = L => {
-    if (!tatum) return 1;
-    const r = L / tatum;
-    for (const [m, f] of [[1, 1], [2, 1], [4, 1], [8, 1], [3, 0.55], [6, 0.55], [12, 0.55]]) if (Math.abs(r / m - 1) < 0.04) return f;
-    return 0.25;
-  };
-  const cands = [];
+  return ac;
+}
+
+// Tempo is chosen in two steps:
+// 1. Find the strongest pulse in the full-band onsets (a beat period also lines up at 2x, 3x and 4x its length).
+// 2. Choose between half and double speed of that pulse. A faster level is only accepted when the in-between
+//    beats carry drum "body" (kick and snare, below ~2.5 kHz) about as strongly as the beats themselves, so
+//    off-beat hi-hats can't double the tempo, while a rock backbeat (kick and snare alternating) can.
+function estimatePeriod(o, fps, body) {
+  const minLag = Math.floor(fps * 60 / 215), maxLag = Math.ceil(fps * 60 / 50);
+  const top = 4 * maxLag + 2;
+  const acFull = autocorr(o, top);
+  const acB = body ? autocorr(body, top) : acFull;
+  // Each envelope is scaled to its own average periodicity so they can be compared.
+  const norm = arr => { let sum = 0, cnt = 0; for (let l = minLag; l <= maxLag; l++) { sum += Math.max(0, arr[l]); cnt++; } const m = Math.max(1e-9, sum / cnt); return Float64Array.from(arr, v => Math.max(0, v) / m); };
+  const nFull = norm(acFull), nBody = body ? norm(acB) : nFull;
+  const ac = nFull;
+  const at = (arr, l) => { const i = Math.floor(l), f = l - i; return i + 1 < arr.length ? arr[i] * (1 - f) + arr[i + 1] * f : 0; };
+  const comb1 = (arr, l) => (at(arr, l) + at(arr, 2 * l) + at(arr, 3 * l) + at(arr, 4 * l)) / 4;
+  // a real beat has to show up both in the full sound and in the drum weight (kick, snare, bass)
+  const comb = l => Math.sqrt(comb1(nFull, l) * comb1(nBody, l));
+  const refine = lag => { const a = ac[lag - 1], b = ac[lag], c = ac[lag + 1], den = a - 2 * b + c; return lag + (den !== 0 ? Math.max(-0.5, Math.min(0.5, 0.5 * (a - c) / den)) : 0); };
+  let best = null;
   for (let lag = minLag; lag <= maxLag; lag++) {
     if (!(ac[lag] >= ac[lag - 1] && ac[lag] >= ac[lag + 1])) continue;
-    const a = ac[lag - 1], b = ac[lag], c = ac[lag + 1];
-    const den = a - 2 * b + c;
-    const L = lag + (den !== 0 ? Math.max(-0.5, Math.min(0.5, 0.5 * (a - c) / den)) : 0);
-    const bpm = 60 * fps / L;
-    const w = Math.exp(-0.5 * Math.pow(Math.log2(bpm / 120), 2));
-    cands.push({ L, v: comb(L) * w * meterFactor(L) });
+    const L = refine(lag), bpm = 60 * fps / L;
+    const w = Math.exp(-0.5 * Math.pow(Math.log2(bpm / 120) / 1.2, 2));
+    const v = comb(L) * w;
+    if (!best || v > best.v) best = { L, v };
   }
-  if (!cands.length) return fps * 0.5;
-  cands.sort((p, q) => q.v - p.v);
-  return cands[0].L;
+  if (!best) return fps * 0.5;
+  // all half/double levels of the winning pulse inside 55-215 BPM, slowest first
+  const inRange = L => { const bpm = 60 * fps / L; return bpm >= 55 && bpm <= 215; };
+  let L = best.L;
+  while (inRange(L * 2)) L *= 2;
+  while (!inRange(L) && L / 2 >= minLag) L /= 2;
+  // closeness to a typical tempo (120 BPM), used only to break half/double ties
+  const typical = l => Math.abs(Math.log2(60 * fps / l / 120));
+  while (inRange(L / 2)) {
+    const bodyRatio = at(nBody, L / 2) / Math.max(1e-9, at(nBody, L));
+    const fullRatio = at(nFull, L / 2) / Math.max(1e-9, at(nFull, L));
+    // faster level wins if the drums themselves play it (rock, punk, drum & bass), or if the
+    // hats/percussion drive it and it is the more typical tempo (trap is written at 140, not 70)
+    if (bodyRatio >= 0.62 || (fullRatio >= 0.62 && typical(L / 2) < typical(L))) L /= 2; else break;
+  }
+  return L;
 }
 
 // ---------- Dynamic-programming beat tracker (Ellis 2007) ----------
@@ -179,7 +194,7 @@ function median(arr) {
 function precisionTempo(x, sr, progress) {
   const hop = 256, N = 1024;
   const fps = sr / hop;
-  const { env: raw, low } = onsetEnvelope(x, sr, hop, N, progress);
+  const { env: raw, low, body: rawBody } = onsetEnvelope(x, sr, hop, N, progress);
   // normalized envelope for tracking: remove slow trend, scale
   const n = raw.length;
   const o = new Float32Array(n);
@@ -198,7 +213,20 @@ function precisionTempo(x, sr, progress) {
   for (let i = 0; i < n; i++) o[i] /= sd;
   if (progress) progress(0.55);
 
-  const p0 = estimatePeriod(o, fps);
+  const bodyN = new Float32Array(n);
+  {
+    const pb = new Float64Array(n + 1);
+    for (let i = 0; i < n; i++) pb[i + 1] = pb[i] + rawBody[i];
+    let accB = 0;
+    for (let i = 0; i < n; i++) {
+      const a = Math.max(0, i - half), b = Math.min(n, i + half + 1);
+      bodyN[i] = Math.max(0, rawBody[i] - (pb[b] - pb[a]) / (b - a));
+      accB += bodyN[i] * bodyN[i];
+    }
+    const sdB = Math.sqrt(accB / Math.max(1, n)) || 1;
+    for (let i = 0; i < n; i++) bodyN[i] /= sdB;
+  }
+  const p0 = estimatePeriod(o, fps, bodyN);
   const { beats } = trackBeats(o, p0);
   if (progress) progress(0.65);
 

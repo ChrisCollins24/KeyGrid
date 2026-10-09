@@ -1,6 +1,6 @@
 {
   "name": "keygrid",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": true,
   "description": "Keygrid: precision BPM and key analyzer for studio engineers",
   "scripts": {

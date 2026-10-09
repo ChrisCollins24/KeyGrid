@@ -2,6 +2,11 @@
 
 All notable changes to Keygrid. Newest first.
 
+## 1.1.1 (2026-10-09)
+
+### Fixed
+- **Better tempo detection for live and fast music.** Rock, punk and drum & bass were often read at half speed, and some live recordings could come out at an unrelated tempo (for example a ~175 BPM rock track read as 116). Keygrid now finds the main pulse using the weight of the kick and snare, and only doubles or halves it when the drums or percussion actually play that level. Hip-hop, trap, reggaeton, house and ballads keep their correct tempos. Thanks to Pedro Uribe for the report.
+
 ## 1.1.0 (2026-10-08)
 
 ### Added
